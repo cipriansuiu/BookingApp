@@ -6,16 +6,17 @@ import javax.persistence.Id;
 @Entity
 public class User {
 @Id
-	private String id;
-	private String password;
 	private String email;
+	private String name;
+	private String password;
+	
 	public User()
 	{
 		
 	}
-	public User(String id, String password,String email) {
+	public User(String name, String password,String email) {
 		super();
-		this.id = id;
+		this.name = name;
 		this.password = password;
 		this.email=email;
 	}
@@ -26,10 +27,10 @@ public class User {
 		this.email = email;
 	}
 	public String getId() {
-		return id;
+		return name;
 	}
-	public void setId(String id) {
-		this.id = id;
+	public void setId(String name) {
+		this.name = name;
 	}
 	public String getPassword() {
 		return password;
