@@ -20,7 +20,7 @@ public class SimpleEmailController {
     @ResponseBody
     String home() {
         try {
-           // sendEmail();
+           //sendEmail();
             return "Email Sent!";
         }catch(Exception ex) {
             return "Error in sending email: "+ex;
@@ -32,8 +32,8 @@ public class SimpleEmailController {
         MimeMessageHelper helper = new MimeMessageHelper(message);
         
         helper.setTo(email);
-        helper.setText("Thank you for registering with us");
-        helper.setSubject("Registration confirmation");
+       /* helper.setText("Thank you for registering with us");
+        helper.setSubject("Registration confirmation");*/
         
         sender.send(message);
     }

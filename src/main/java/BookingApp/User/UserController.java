@@ -28,6 +28,7 @@ public class UserController {
 	public void addUser(@RequestBody User user) throws Exception{
 		userService.addUser(user);
 
+		System.out.println("Messenger");
 	SimpleEmailController controller=new SimpleEmailController();
 		controller.sendEmail(user.getEmail());
 	
