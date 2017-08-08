@@ -25,10 +25,14 @@ public class UserController {
 	}
 	
 	@RequestMapping(method=RequestMethod.POST,value="/users")
-	public void addUser(@RequestBody User user){
+	public void addUser(@RequestBody User user) throws Exception{
 		userService.addUser(user);
+
+	SimpleEmailController controller=new SimpleEmailController();
+		controller.sendEmail(user.getEmail());
+	
 		
-			 
+
 	}
 	
 	
