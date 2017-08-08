@@ -20,7 +20,7 @@ public class SimpleEmailController {
     @ResponseBody
     String home() {
         try {
-           // sendEmail();
+          //  sendEmail();
             return "Email Sent!";
         }catch(Exception ex) {
             return "Error in sending email: "+ex;
