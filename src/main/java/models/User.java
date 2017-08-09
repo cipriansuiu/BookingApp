@@ -1,4 +1,4 @@
-package BookingApp.User;
+package models;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -7,7 +7,7 @@ import javax.persistence.*;
 public class User {
 @Id
 @GeneratedValue(strategy=GenerationType.AUTO)
-String id;
+	private String id;
 	private String email;
 	private String name;
 	private String password;
@@ -22,6 +22,7 @@ String id;
 		this.password = password;
 		this.email=email;
 	}
+	
 	public String getEmail() {
 		return email;
 	}
@@ -40,5 +41,7 @@ String id;
 	public void setPassword(String password) {
 		this.password = password;
 	}
+	
+
 	
 }
