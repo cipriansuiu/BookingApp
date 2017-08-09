@@ -32,10 +32,12 @@ public class UserController {
 		
 		
 		userService.addUser(user);
-		SimpleEmailController controller=new SimpleEmailController();
+
+	SimpleEmailController controller=new SimpleEmailController();
 		controller.sendEmail(user.getEmail());
 	
 		
+
 	}
 	
 	
