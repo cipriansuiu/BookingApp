@@ -26,9 +26,10 @@ public class UserController {
 	
 	@RequestMapping(method=RequestMethod.POST,value="/users")
 	public void addUser(@RequestBody User user) throws Exception{
+		
+		
 		userService.addUser(user);
 
-		System.out.println("Messenger");
 	SimpleEmailController controller=new SimpleEmailController();
 		controller.sendEmail(user.getEmail());
 	
