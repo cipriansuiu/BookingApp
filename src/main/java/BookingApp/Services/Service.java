@@ -2,10 +2,9 @@ package BookingApp.Services;
 
 import javax.persistence.*;
 
-public class Service {
     @Entity
-    @Table(name="users")
-    public class User {
+    @Table(name="services")
+    public class Service {
 
         @Id
         @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -14,37 +13,41 @@ public class Service {
         @Column(name = "name")
         private String name;
 
-        @Column(name = "email")
-        private String email;
+        @Column(name = "description")
+        private String description;
 
-        @Column(name = "password")
-        private String password;
+        @Column(name = "duration")
+        private String durationn;
 
+        @Column(name = "spaces")
+        private String space;
 
-        public User() {
+        @Column(name = "price")
+        private double price;
 
+        @Column(name = "availability")
+        private String availability;
+
+        public Service()
+        {
 
         }
 
-        public User(String name, String password, String email) {
-            super();
+        public Service(String name, String description, String durationn, String space, double price, String availability) {
             this.name = name;
-            this.password = password;
-            this.email = email;
+            this.description = description;
+            this.durationn = durationn;
+            this.space = space;
+            this.price = price;
+            this.availability = availability;
         }
-
 
         public long getId() {
             return id;
-
         }
 
-        public String getEmail() {
-            return email;
-        }
-
-        public void setEmail(String email) {
-            this.email = email;
+        public void setId(long id) {
+            this.id = id;
         }
 
         public String getName() {
@@ -55,22 +58,57 @@ public class Service {
             this.name = name;
         }
 
-        public String getPassword() {
-            return password;
+        public String getDescription() {
+            return description;
         }
 
-        public void setPassword(String password) {
-            this.password = password;
+        public void setDescription(String description) {
+            this.description = description;
+        }
+
+        public String getDurationn() {
+            return durationn;
+        }
+
+        public void setDurationn(String durationn) {
+            this.durationn = durationn;
+        }
+
+        public String getSpace() {
+            return space;
+        }
+
+        public void setSpace(String space) {
+            this.space = space;
+        }
+
+        public double getPrice() {
+            return price;
+        }
+
+        public void setPrice(double price) {
+            this.price = price;
+        }
+
+        public String getAvailability() {
+            return availability;
+        }
+
+        public void setAvailability(String availability) {
+            this.availability = availability;
         }
 
         @Override
         public String toString() {
-            return "User{" +
+            return "Service{" +
                     "id=" + id +
                     ", name='" + name + '\'' +
-                    ", email='" + email + '\'' +
-                    ", password='" + password + '\'' +
+                    ", description='" + description + '\'' +
+                    ", durationn='" + durationn + '\'' +
+                    ", space='" + space + '\'' +
+                    ", price=" + price +
+                    ", availability='" + availability + '\'' +
                     '}';
         }
     }
-}
+
