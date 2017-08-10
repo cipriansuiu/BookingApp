@@ -1,25 +1,27 @@
 package BookingApp.Services;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Service
 public class ServiceService {
 
     @Autowired
     private ServiceRepository serviceRepository;
-    public List<Service> getAllServices()
+    public List<ServiceDao> getAllServices()
     {
-        List<Service> services=new ArrayList<>();
+        List<ServiceDao> services=new ArrayList<>();
         serviceRepository.findAll().forEach(services::add);
         return services;
     }
-    public Service getService(Long id)
+    public ServiceDao getService(Long id)
     {
         return serviceRepository.findOne(id);
     }
-    public void addService(Service service)
+    public void addService(ServiceDao service)
     {
         serviceRepository.save(service);
     }
