@@ -1,5 +1,7 @@
 package BookingApp.Services;
 
+import BookingApp.User.User;
+
 import javax.persistence.*;
 
     @Entity
@@ -27,6 +29,9 @@ import javax.persistence.*;
 
         @Column(name = "availability")
         private String availability;
+
+        @ManyToOne
+        private User user;
 
         public ServiceDao()
         {
@@ -100,7 +105,7 @@ import javax.persistence.*;
 
         @Override
         public String toString() {
-            return "Service{" +
+            return "ServiceDao{" +
                     "id=" + id +
                     ", name='" + name + '\'' +
                     ", description='" + description + '\'' +
@@ -108,6 +113,7 @@ import javax.persistence.*;
                     ", space='" + space + '\'' +
                     ", price=" + price +
                     ", availability='" + availability + '\'' +
+                    ", user=" + user +
                     '}';
         }
     }

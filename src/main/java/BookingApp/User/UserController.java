@@ -34,12 +34,15 @@ public class UserController {
 		userService.addUser(user);
 		//SimpleEmailController controller=new SimpleEmailController();
 		//controller.sendEmail(user.getEmail());
-	
-		
 	}
-	
-	
-	
-	
 
+	@RequestMapping(method = RequestMethod.PUT, value = "/users")
+	public void updateUser(@RequestBody User user) {
+		userService.updateUser(user);
+	}
+
+	@RequestMapping(method = RequestMethod.DELETE, value = "/users/{id}")
+	public void deleteUser(@PathVariable Long id) {
+		userService.deleteUser(id);
+	}
 }
