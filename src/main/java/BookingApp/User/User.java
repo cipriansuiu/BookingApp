@@ -3,17 +3,29 @@ package BookingApp.User;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.*;
+
 @Entity
+@Table(name="users")
 public class User {
-@Id
-@GeneratedValue(strategy=GenerationType.AUTO)
-String id;
-	private String email;
+
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private long id;
+
+	@Column(name="name")
 	private String name;
+
+	@Column(name="email")
+	private String email;
+
+	@Column(name="password")
 	private String password;
-	
+
+
+
 	public User()
 	{
+
 		
 	}
 	public User(String name, String password,String email) {
@@ -21,6 +33,12 @@ String id;
 		this.name = name;
 		this.password = password;
 		this.email=email;
+	}
+
+
+	public long getId() {
+		return id;
+
 	}
 	public String getEmail() {
 		return email;
@@ -40,5 +58,14 @@ String id;
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	
+
+	@Override
+	public String toString() {
+		return "User{" +
+				"id=" + id +
+				", name='" + name + '\'' +
+				", email='" + email + '\'' +
+				", password='" + password + '\'' +
+				'}';
+	}
 }

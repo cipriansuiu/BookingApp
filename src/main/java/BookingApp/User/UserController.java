@@ -11,13 +11,16 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class UserController {
+
 	@Autowired
 	private UserService userService;
+
 	@RequestMapping("/users")
 	public List<User> getAllUsers()
 	{
 		return userService.getAllUsers();
 	}
+
 	@RequestMapping("/users/{email}")
 	public User getUser(@PathVariable String email)
 	{
@@ -29,8 +32,8 @@ public class UserController {
 		
 		
 		userService.addUser(user);
-		SimpleEmailController controller=new SimpleEmailController();
-		controller.sendEmail(user.getEmail());
+		//SimpleEmailController controller=new SimpleEmailController();
+		//controller.sendEmail(user.getEmail());
 	
 		
 	}
