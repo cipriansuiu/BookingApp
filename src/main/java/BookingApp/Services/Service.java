@@ -8,30 +8,29 @@ public class Service {
     public class User {
 
         @Id
-        @GeneratedValue(strategy= GenerationType.IDENTITY)
+        @GeneratedValue(strategy = GenerationType.IDENTITY)
         private long id;
 
-        @Column(name="name")
+        @Column(name = "name")
         private String name;
 
-        @Column(name="email")
+        @Column(name = "email")
         private String email;
 
-        @Column(name="password")
+        @Column(name = "password")
         private String password;
 
 
-
-        public User()
-        {
+        public User() {
 
 
         }
-        public User(String name, String password,String email) {
+
+        public User(String name, String password, String email) {
             super();
             this.name = name;
             this.password = password;
-            this.email=email;
+            this.email = email;
         }
 
 
@@ -39,21 +38,27 @@ public class Service {
             return id;
 
         }
+
         public String getEmail() {
             return email;
         }
+
         public void setEmail(String email) {
             this.email = email;
         }
+
         public String getName() {
             return name;
         }
+
         public void setName(String name) {
             this.name = name;
         }
+
         public String getPassword() {
             return password;
         }
+
         public void setPassword(String password) {
             this.password = password;
         }
@@ -67,4 +72,5 @@ public class Service {
                     ", password='" + password + '\'' +
                     '}';
         }
+    }
 }
