@@ -38,7 +38,8 @@ import javax.persistence.*;
 
         }
 
-        public ServiceDao(String name, String description, String durationn, String space, double price, String availability) {
+        public ServiceDao(long idS,String name, String description, String durationn, String space, double price, String availability) {
+            this.id = idS;
             this.name = name;
             this.description = description;
             this.durationn = durationn;

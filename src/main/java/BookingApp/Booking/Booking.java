@@ -2,20 +2,21 @@ package BookingApp.Booking;
 
 
 import BookingApp.Services.ServiceDao;
-import BookingApp.User.User;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.sql.Date;
 
 @Entity
 @Table(name="booking")
-public class Booking {
+public class Booking  {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @OneToOne
+    @ManyToOne
     private ServiceDao servicedao;
 
     @Column(name="name")
@@ -36,8 +37,8 @@ public class Booking {
 
     }
 
-    public Booking(ServiceDao serviceDao, String name, String email, String phone_number, Date availability) {
-        this.servicedao = serviceDao;
+    public Booking(long serviceId, String name, String email, String phone_number, Date availability) {
+        this.servicedao = new ServiceDao(serviceId,"","","","",0D,"");
         this.name = name;
         this.email = email;
         this.phone_number = phone_number;
@@ -96,7 +97,7 @@ public class Booking {
     public String toString() {
         return "Booking{" +
                 "id=" + id +
-                ", serviceDao=" + servicedao +
+                ", servicedao=" + servicedao +
                 ", name='" + name + '\'' +
                 ", email='" + email + '\'' +
                 ", phone_number='" + phone_number + '\'' +

@@ -21,6 +21,7 @@ public class BookingService {
     {
         return bookingRepository.findOne(id);
     }
+
     public void addBooking(Booking booking)
     {
         bookingRepository.save(booking);
