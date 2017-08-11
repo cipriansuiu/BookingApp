@@ -2,7 +2,6 @@ package BookingApp.Booking;
 
 
 import BookingApp.Services.ServiceDao;
-import BookingApp.User.User;
 
 import javax.persistence.*;
 import java.sql.Date;
