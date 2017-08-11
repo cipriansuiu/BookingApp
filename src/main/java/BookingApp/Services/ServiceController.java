@@ -23,10 +23,6 @@ public class ServiceController {
 
     @RequestMapping(method = RequestMethod.POST, value = "/services")
     public void addService(@RequestBody ServiceDao service) throws Exception {
-
-
         serviceService.addService(service);
-
-
     }
 }

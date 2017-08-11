@@ -16,7 +16,7 @@ public class Booking {
     private long id;
 
     @OneToOne
-    private ServiceDao serviceDao;
+    private ServiceDao servicedao;
 
     @Column(name="name")
     private String name;
@@ -37,7 +37,7 @@ public class Booking {
     }
 
     public Booking(ServiceDao serviceDao, String name, String email, String phone_number, Date availability) {
-        this.serviceDao = serviceDao;
+        this.servicedao = serviceDao;
         this.name = name;
         this.email = email;
         this.phone_number = phone_number;
@@ -53,11 +53,11 @@ public class Booking {
     }
 
     public ServiceDao getServiceDao() {
-        return serviceDao;
+        return servicedao;
     }
 
     public void setServiceDao(ServiceDao serviceDao) {
-        this.serviceDao = serviceDao;
+        this.servicedao = serviceDao;
     }
 
     public String getName() {
@@ -96,7 +96,7 @@ public class Booking {
     public String toString() {
         return "Booking{" +
                 "id=" + id +
-                ", serviceDao=" + serviceDao +
+                ", serviceDao=" + servicedao +
                 ", name='" + name + '\'' +
                 ", email='" + email + '\'' +
                 ", phone_number='" + phone_number + '\'' +

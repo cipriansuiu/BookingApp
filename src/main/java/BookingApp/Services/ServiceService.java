@@ -11,18 +11,26 @@ public class ServiceService {
 
     @Autowired
     private ServiceRepository serviceRepository;
-    public List<ServiceDao> getAllServices()
-    {
-        List<ServiceDao> services=new ArrayList<>();
+
+    public List<ServiceDao> getAllServices() {
+        List<ServiceDao> services = new ArrayList<>();
         serviceRepository.findAll().forEach(services::add);
         return services;
     }
-    public ServiceDao getService(Long id)
-    {
+
+    public ServiceDao getService(Long id) {
         return serviceRepository.findOne(id);
     }
-    public void addService(ServiceDao service)
-    {
+
+    public void addService(ServiceDao service) {
         serviceRepository.save(service);
+    }
+
+    public void updateService(ServiceDao service) {
+        serviceRepository.save(service);
+    }
+
+    public void deleteService(Long id) {
+        serviceRepository.delete(id);
     }
 }
