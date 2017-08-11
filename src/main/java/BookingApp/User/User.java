@@ -34,6 +34,12 @@ public class User {
 		this.password = password;
 		this.email=email;
 	}
+	public User(User user) {
+		this.id=user.id;
+		this.name=user.name;
+		this.email=user.email;
+		this.password=user.password;
+	}
 
 
 	public long getId() {
