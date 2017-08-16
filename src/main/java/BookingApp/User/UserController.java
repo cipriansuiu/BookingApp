@@ -1,11 +1,11 @@
 package BookingApp.User;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 public class UserController {
@@ -27,13 +27,13 @@ public class UserController {
 		return userService.getUser(id);
 	}
 	
-	@RequestMapping(method=RequestMethod.POST,value="/users")
+	@RequestMapping(method= RequestMethod.POST,value="/users")
 	public void addUser(@RequestBody User user) throws Exception{
 		
 		
 		userService.addUser(user);
-		//SimpleEmailController controller=new SimpleEmailController();
-		//controller.sendEmail(user.getEmail());
+		SimpleEmailController controller=new SimpleEmailController();
+		controller.sendEmail(user.getEmail());
 	}
 
 	@RequestMapping(method = RequestMethod.PUT, value = "/users")
