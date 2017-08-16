@@ -3,6 +3,7 @@ package BookingApp.User;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.*;
+import java.util.UUID;
 
 @Entity
 @Table(name="users")
@@ -20,7 +21,24 @@ public class User {
 
 	@Column(name="password")
 	private String password;
+	@Column(name="token")
+	private String token;
 
+	public String getToken() {
+		return token;
+	}
+
+
+	public void resetToken()
+	{
+		this.token="0";
+	}
+
+	
+	public void setToken() {
+		UUID tokenGenerator=UUID.randomUUID();
+		this.token =tokenGenerator.toString();
+	}
 
 	public void setId(long id) {
 		this.id = id;
@@ -38,6 +56,7 @@ public class User {
 		this.name = name;
 		this.password = password;
 		this.email=email;
+		this.token="0";
 	}
 
 	public User(String name, String password,String email) {
@@ -45,6 +64,7 @@ public class User {
 		this.name = name;
 		this.password = password;
 		this.email=email;
+		this.token="0";
 	}
 
 	public User(String email,String password) {
