@@ -1,13 +1,11 @@
 package BookingApp.Services;
 
-import BookingApp.User.User;
 import BookingApp.User.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Stream;
 
 @Service
 public class ServiceService {

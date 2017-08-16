@@ -35,7 +35,7 @@ public class User {
 		this.token="0";
 	}
 
-
+	
 	public void setToken() {
 		UUID tokenGenerator=UUID.randomUUID();
 		this.token =tokenGenerator.toString();
@@ -43,6 +43,7 @@ public class User {
 
 	public void setId(long id) {
 		this.id = id;
+
 	}
 
 
@@ -64,8 +65,15 @@ public class User {
 
 		this.name = name;
 		this.password = password;
+		this.email=email;
+		this.token="0";
+	}
+
+	public User(String email,String password) {
+
 		this.email = email;
-		this.token = "0";
+
+		this.password=password;
 	}
 	public long getId() {
 		return id;

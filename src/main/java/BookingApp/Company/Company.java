@@ -2,9 +2,10 @@ package BookingApp.Company;
 
 import BookingApp.User.User;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 import java.io.Serializable;
-
+import javax.persistence.*;
 @Entity
 @Table(name = "companies", uniqueConstraints = {@UniqueConstraint(columnNames = {"name"})})
 public class Company implements Serializable {

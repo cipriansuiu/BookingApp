@@ -1,13 +1,11 @@
 package BookingApp.User;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpSession;
+import java.util.List;
 
 @RestController
 public class UserController {
@@ -62,6 +60,7 @@ public class UserController {
 
 		String pass = currentUser.getPassword();
 		String inputPass = user.getPassword();
+
 		if(!(currentUser.getEmail().equals(""))&& currentUser.getEmail().matches(inputPass)) {
 			currentUser = userRepository.findByEmail(user.getEmail());
 			currentUser.setToken();

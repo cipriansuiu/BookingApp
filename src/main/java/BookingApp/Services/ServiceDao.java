@@ -1,11 +1,10 @@
 package BookingApp.Services;
 
 import BookingApp.Company.Company;
-import BookingApp.User.User;
 
+import javax.persistence.Entity;
 import javax.persistence.*;
-
-    @Entity
+@Entity
     @Table(name="services")
     public class ServiceDao {
 

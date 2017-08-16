@@ -104,7 +104,11 @@
     <artifactId>spring-boot-starter-mail</artifactId>
     <version>1.4.1.RELEASE</version>
 	</dependency>
-
+		<dependency>
+			<groupId>org.apache.tomcat</groupId>
+			<artifactId>tomcat-jdbc</artifactId>
+			<version>8.5.15</version>
+		</dependency>
 
 	</dependencies>
 
