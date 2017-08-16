@@ -1,8 +1,5 @@
 package BookingApp.User;
 
-import org.jboss.logging.Logger;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.*;
 import org.springframework.stereotype.Component;
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
@@ -17,13 +14,12 @@ import java.io.IOException;
 
 import org.slf4j.LoggerFactory;
 
-@Component
-public class SecurityConfig implements Filter{
+public class SecurityConfigUser implements Filter{
 
 
-    private final org.slf4j.Logger log = LoggerFactory.getLogger(SecurityConfig.class);
+    private final org.slf4j.Logger log = LoggerFactory.getLogger(SecurityConfigUser.class);
 
-    public SecurityConfig() {
+    public SecurityConfigUser() {
         log.info("SimpleCORSFilter init");
     }
 
