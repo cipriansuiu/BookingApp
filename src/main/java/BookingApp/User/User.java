@@ -19,29 +19,24 @@ public class User {
 
 	@Column(name="password")
 	private String password;
-
 	@Column(name="token")
- 	private String token;
-
-	public User() {
-
-	}
+	private String token;
 
 	public String getToken() {
-				return token;
-			}
+		return token;
+	}
 
 
-		 	public void resetToken()
- 	{
-				this.token="0";
-			}
+	public void resetToken()
+	{
+		this.token="0";
+	}
 
 
-		 	public void setToken() {
-				UUID tokenGenerator=UUID.randomUUID();
-				this.token =tokenGenerator.toString();
-			}
+	public void setToken() {
+		UUID tokenGenerator=UUID.randomUUID();
+		this.token =tokenGenerator.toString();
+	}
 
 	public void setId(long id) {
 		this.id = id;
@@ -64,9 +59,15 @@ public class User {
 		this.name = name;
 		this.password = password;
 		this.email=email;
+		this.token="0";
 	}
 
+	public User() {
 
+		this.email = email;
+
+		this.password=password;
+	}
 	public long getId() {
 		return id;
 
