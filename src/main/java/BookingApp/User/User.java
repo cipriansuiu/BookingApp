@@ -22,20 +22,37 @@ public class User {
 	private String password;
 
 
+	public void setId(long id) {
+		this.id = id;
+	}
+
+
 
 	public User()
 	{
 
 		
 	}
-	public User(String name, String password,String email) {
-		super();
+	public User(long id,String name, String password,String email) {
+		this.id=id;
 		this.name = name;
 		this.password = password;
 		this.email=email;
 	}
 
+	public User(String name, String password,String email) {
 
+		this.name = name;
+		this.password = password;
+		this.email=email;
+	}
+
+	public User(String email,String password) {
+
+		this.email = email;
+
+		this.password=password;
+	}
 	public long getId() {
 		return id;
 
@@ -66,6 +83,7 @@ public class User {
 				", name='" + name + '\'' +
 				", email='" + email + '\'' +
 				", password='" + password + '\'' +
+
 				'}';
 	}
 }

@@ -3,17 +3,17 @@ package BookingApp.User;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class UserController {
 
 	@Autowired
 	private UserService userService;
+
+	private UserRepository userRepository;
 
 	@RequestMapping("/users")
 	public List<User> getAllUsers()
@@ -44,5 +44,23 @@ public class UserController {
 	@RequestMapping(method = RequestMethod.DELETE, value = "/users/{id}")
 	public void deleteUser(@PathVariable Long id) {
 		userService.deleteUser(id);
+	}
+
+	@CrossOrigin
+	@RequestMapping(path="/login", method = RequestMethod.POST)
+	public ResponseEntity<String> login(@RequestBody User user){
+
+		User currentUser = new User();
+		currentUser = userRepository.findByEmail(user.getEmail());
+
+		String pass = currentUser.getPassword();
+		String inputPass = user.getPassword();
+
+		if(!(currentUser.getEmail().equals(""))&& currentUser.getEmail().matches(inputPass)) {
+			currentUser = userRepository.findByEmail(user.getEmail());
+			return new ResponseEntity<>("Session created " + currentUser.getEmail() , HttpStatus.OK);
+		} else {
+			return new ResponseEntity<>("Something went wrong", HttpStatus.BAD_REQUEST);
+		}
 	}
 }

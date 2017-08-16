@@ -1,6 +1,7 @@
 package BookingApp.Services;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -24,5 +25,15 @@ public class ServiceController {
     @RequestMapping(method = RequestMethod.POST, value = "/services")
     public void addService(@RequestBody ServiceDao service) throws Exception {
         serviceService.addService(service);
+    }
+
+    @RequestMapping(method = RequestMethod.PUT, value = "/services")
+    public void updateService(@RequestBody ServiceDao service) {
+        serviceService.updateService(service);
+    }
+
+    @RequestMapping(method = RequestMethod.DELETE, value = "/services/{id}")
+    public void deleteService(@PathVariable Long id) {
+        serviceService.deleteService(id);
     }
 }

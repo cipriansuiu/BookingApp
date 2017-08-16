@@ -1,6 +1,7 @@
 package BookingApp.Booking;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -34,4 +35,18 @@ public class BookingService {
     public void deleteBooking(Long id) {
         bookingRepository.delete(id);
     }
+
+//    public ResponseEntity findBookingByName(String name) {
+//        try {
+//            List<Booking> bookingList = bookingRepository.findByName(name);
+//
+//            System.out.println("OK: " + bookingList.toString());
+//            return ResponseEntity.ok(bookingList);
+//        } catch (Exception e) {
+//            System.out.println("BAD REQUEST!");
+//            return ResponseEntity.badRequest().body("Bad request! " + e.toString());
+//        }
+//    }
+
+
 }

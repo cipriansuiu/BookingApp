@@ -2,10 +2,8 @@ package BookingApp.Booking;
 
 
 import BookingApp.Services.ServiceDao;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
-import java.io.Serializable;
 import java.sql.Date;
 
 @Entity
@@ -16,8 +14,8 @@ public class Booking  {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @ManyToOne
-    private ServiceDao servicedao;
+    @Column(name="service_id")
+    private long service_id;
 
     @Column(name="name")
     private String name;
@@ -32,17 +30,27 @@ public class Booking  {
     @Column(name = "availability", length = 10)
     private Date availability;
 
+
     public Booking()
     {
 
     }
 
+    public long getService_id() {
+        return service_id;
+    }
+
+    public void setService_id(long service_id) {
+        this.service_id = service_id;
+    }
+
     public Booking(long serviceId, String name, String email, String phone_number, Date availability) {
-        this.servicedao = new ServiceDao(serviceId,"","","","",0D,"");
+        this.service_id= serviceId;
         this.name = name;
         this.email = email;
         this.phone_number = phone_number;
         this.availability = availability;
+
     }
 
     public long getId() {
@@ -51,14 +59,6 @@ public class Booking  {
 
     public void setId(long id) {
         this.id = id;
-    }
-
-    public ServiceDao getServiceDao() {
-        return servicedao;
-    }
-
-    public void setServiceDao(ServiceDao serviceDao) {
-        this.servicedao = serviceDao;
     }
 
     public String getName() {
@@ -93,11 +93,12 @@ public class Booking  {
         this.availability = availability;
     }
 
+
     @Override
     public String toString() {
         return "Booking{" +
-                "id=" + id +
-                ", servicedao=" + servicedao +
+                ", id=" + id +
+                ", service_id=" + service_id +
                 ", name='" + name + '\'' +
                 ", email='" + email + '\'' +
                 ", phone_number='" + phone_number + '\'' +

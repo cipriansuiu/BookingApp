@@ -1,5 +1,6 @@
 package BookingApp.Services;
 
+import BookingApp.Company.Company;
 import BookingApp.User.User;
 
 import javax.persistence.*;
@@ -8,9 +9,14 @@ import javax.persistence.*;
     @Table(name="services")
     public class ServiceDao {
 
+        private static final long serialVersionUID = -3009157732242241606L;
+
         @Id
-        @GeneratedValue(strategy = GenerationType.IDENTITY)
+        @GeneratedValue(strategy = GenerationType.AUTO)
         private long id;
+
+        @ManyToOne(fetch = FetchType.EAGER)
+        private Company company;
 
         @Column(name = "name")
         private String name;
@@ -19,41 +25,48 @@ import javax.persistence.*;
         private String description;
 
         @Column(name = "duration")
-        private String durationn;
+        private String duration;
 
-        @Column(name = "spaces")
-        private String space;
+        @Column(name = "free_space")
+        private int free_space;
 
         @Column(name = "price")
         private double price;
 
-        @Column(name = "availability")
-        private String availability;
+        @Column(name = "date")
+        private String date;
 
-        @ManyToOne
-        private User user;
+        public ServiceDao() {}
 
-        public ServiceDao()
-        {
-
-        }
-
-        public ServiceDao(long idS,String name, String description, String durationn, String space, double price, String availability) {
-            this.id = idS;
+        public ServiceDao(String name, String description, String duration, int free_space, double price, String date) {
             this.name = name;
             this.description = description;
-            this.durationn = durationn;
-            this.space = space;
+            this.duration = duration;
+            this.free_space = free_space;
             this.price = price;
-            this.availability = availability;
+            this.date = date;
+        }
+
+        public ServiceDao(long id_company, String name, String description, String duration, int free_space, double price, String date) {
+            this.company = new Company(id_company, "","","");
+            this.name = name;
+            this.description = description;
+            this.duration = duration;
+            this.free_space = free_space;
+            this.price = price;
+            this.date = date;
         }
 
         public long getId() {
             return id;
         }
 
-        public void setId(long id) {
-            this.id = id;
+        public Company getCompany() {
+            return company;
+        }
+
+        public void setCompany(Company company) {
+            this.company = company;
         }
 
         public String getName() {
@@ -72,20 +85,20 @@ import javax.persistence.*;
             this.description = description;
         }
 
-        public String getDurationn() {
-            return durationn;
+        public String getDuration() {
+            return duration;
         }
 
-        public void setDurationn(String durationn) {
-            this.durationn = durationn;
+        public void setDuration(String duration) {
+            this.duration = duration;
         }
 
-        public String getSpace() {
-            return space;
+        public int getFree_space() {
+            return free_space;
         }
 
-        public void setSpace(String space) {
-            this.space = space;
+        public void setFree_space(int free_space) {
+            this.free_space = free_space;
         }
 
         public double getPrice() {
@@ -96,25 +109,25 @@ import javax.persistence.*;
             this.price = price;
         }
 
-        public String getAvailability() {
-            return availability;
+        public String getSchedule() {
+            return date;
         }
 
-        public void setAvailability(String availability) {
-            this.availability = availability;
+        public void setSchedule(String date) {
+            this.date = date;
         }
 
         @Override
         public String toString() {
-            return "ServiceDao{" +
+            return "Service{" +
                     "id=" + id +
+                    ", company=" + company +
                     ", name='" + name + '\'' +
                     ", description='" + description + '\'' +
-                    ", durationn='" + durationn + '\'' +
-                    ", space='" + space + '\'' +
+                    ", duration='" + duration + '\'' +
+                    ", free_space=" + free_space +
                     ", price=" + price +
-                    ", availability='" + availability + '\'' +
-                    ", user=" + user +
+                    ", date='" + date + '\'' +
                     '}';
         }
     }
