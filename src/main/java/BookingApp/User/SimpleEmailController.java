@@ -20,20 +20,20 @@ public class SimpleEmailController {
     @ResponseBody
     String home() {
         try {
-          sendEmail("lpemilian@gmail.com");
+          sendEmail("lpemilian@gmail.com","");
             return "Email Sent!";
         }catch(Exception ex) {
             return "Error in sending email: "+ex;
         }
     }
 
-    public void sendEmail(String email) throws Exception{
+    public void sendEmail(String email,String msg) throws Exception{
         MimeMessage message = sender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(message);
         
         helper.setTo(email);
-        helper.setText("Thank you for registering with us");
-        helper.setSubject("Registration confirmation");
+        helper.setText("msg");
+        helper.setSubject("Success!");
         
         sender.send(message);
     }

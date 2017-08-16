@@ -21,6 +21,7 @@ public class User {
 
 	@Column(name="password")
 	private String password;
+
 	@Column(name="token")
 	private String token;
 
@@ -34,7 +35,7 @@ public class User {
 		this.token="0";
 	}
 
-	
+
 	public void setToken() {
 		UUID tokenGenerator=UUID.randomUUID();
 		this.token =tokenGenerator.toString();
@@ -63,15 +64,8 @@ public class User {
 
 		this.name = name;
 		this.password = password;
-		this.email=email;
-		this.token="0";
-	}
-
-	public User(String email,String password) {
-
 		this.email = email;
-
-		this.password=password;
+		this.token = "0";
 	}
 	public long getId() {
 		return id;
