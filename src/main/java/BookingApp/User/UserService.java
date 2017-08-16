@@ -47,4 +47,19 @@ public class UserService {
 		return PASSWORD_ENCODER.encode(inputPass);
 	}
 
+
+	public String getToken(User user)
+ 	{
+				return user.getToken();
+			}
+
+		 	public void setToken(User user)
+ 	{
+				user.setToken();
+			}
+ 	public void resetToken(User user)
+ 	{
+				user.resetToken();
+			}
+
 }

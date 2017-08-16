@@ -46,6 +46,14 @@ public class UserController {
 		userService.deleteUser(id);
 	}
 
+
+	@RequestMapping(method=RequestMethod.POST,value="/logout")
+ 	public String logout(@RequestBody User user)
+ 	{
+				user.resetToken();
+				return "User logged out";
+			}
+
 	@CrossOrigin
 	@RequestMapping(path="/login", method = RequestMethod.POST)
 	public ResponseEntity<String> login(@RequestBody User user){
@@ -58,9 +66,10 @@ public class UserController {
 
 		if(!(currentUser.getEmail().equals(""))&& currentUser.getEmail().matches(inputPass)) {
 			currentUser = userRepository.findByEmail(user.getEmail());
-			return new ResponseEntity<>("Session created " + currentUser.getEmail() , HttpStatus.OK);
+			currentUser.setToken();
+						return new ResponseEntity<>(currentUser.getToken() , HttpStatus.OK);
 		} else {
-			return new ResponseEntity<>("Something went wrong", HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<>("0", HttpStatus.BAD_REQUEST);
 		}
 	}
 }
