@@ -3,13 +3,6 @@ package BookingApp.Recovery;
 import BookingApp.User.SimpleEmailController;
 import BookingApp.User.User;
 import BookingApp.User.UserService;
-import org.springframework.http.ResponseEntity;
-import org.springframework.mail.SimpleMailMessage;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -24,7 +17,7 @@ public class PasswordController {
 
     @RequestMapping(value = "/user/resetPassword")
     @ResponseBody
-    public String resetPassword(HttpServletRequest request,
+    public String resetPassword(
     @RequestParam("email") String userEmail) throws Exception {
         User user = userService.findUserByEmail(userEmail);
         if (user == null) {

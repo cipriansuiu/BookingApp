@@ -7,6 +7,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.stream.Stream;
 
 @Service
@@ -26,8 +28,14 @@ public class ServiceService {
         return serviceRepository.findOne(id);
     }
 
-    public void addService(ServiceDao service) {
+    public String addService(ServiceDao service) {
+
+        if(!isValidName(service.getName()))
+        {
+            return "Invalid name!";
+        }
         serviceRepository.save(service);
+        return "ok";
     }
 
     public void updateService(ServiceDao service) {
@@ -38,10 +46,12 @@ public class ServiceService {
         serviceRepository.delete(id);
     }
 
-//    public Stream getUser(ServiceDao service)
-//    {
-//        List<User> users = userService.getAllUsers();
-//        Stream<User> correctUser = users.stream().filter(u -> u.getId() == service.getUser_id());
-//        return correctUser;
-//    }
+    private boolean isValidName(String name){
+        String expression="^[a-zA-Z0-9_]+( [a-zA-Z0-9_]+)*$";
+        Pattern pattern = Pattern.compile(expression, Pattern.CASE_INSENSITIVE);
+        Matcher matcher = pattern.matcher(name);
+
+        return matcher.matches();
+    }
+
 }

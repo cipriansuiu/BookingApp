@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -51,18 +52,20 @@ public class UserController {
 		userService.deleteUser(id);
 	}
 
-	@RequestMapping(path="/login", method = RequestMethod.POST)
 	@CrossOrigin
-	public ResponseEntity<String> login(@RequestBody User user){
+	@RequestMapping(path="/login")
+	public ResponseEntity<String> login(@RequestParam("email") String email, @RequestParam("password") String password){
 
 		User currentUser = new User();
-		currentUser = userRepository.findByEmail(user.getEmail());
+		currentUser = userRepository.findByEmail(email);
 
-		String pass = currentUser.getPassword();
-		String inputPass = user.getPassword();
+		String inputPass = password;
 
-		if(!(currentUser.getEmail().equals(""))&& currentUser.getEmail().matches(inputPass)) {
-			currentUser = userRepository.findByEmail(user.getEmail());
+		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+		inputPass = encoder.encode(password);
+
+		if(!(currentUser.getEmail().equals(""))&& currentUser.getPassword().equals(inputPass)) {
+			currentUser = userRepository.findByEmail(email);
 			return new ResponseEntity<>("Session created " + currentUser.getEmail() , HttpStatus.OK);
 		} else {
 			return new ResponseEntity<>("Something went wrong", HttpStatus.BAD_REQUEST);
