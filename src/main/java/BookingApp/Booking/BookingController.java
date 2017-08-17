@@ -5,6 +5,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.awt.print.Book;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -28,6 +31,20 @@ public class BookingController {
         bookingService.addBooking(booking);
     }
 
+    @RequestMapping(method=RequestMethod.POST,value="/week/{week}")
+    public List<Booking> thisWeek(@RequestBody Date date)
+    {
+        List<Booking> bookings=getAllBookings();
+        List<Booking> weekBooking=new ArrayList<Booking>();
+        for(Booking book:bookings)
+        {
+            if (book.betweenDates(date))
+            {
+                weekBooking.add(book);
+            }
+        }
+        return weekBooking;
+    }
 //    @RequestMapping(method=RequestMethod.GET, value="/bookings/name/{name}"  )
 //    public ResponseEntity findBookingByName(@PathVariable String name){
 //        return bookingService.findBookingByName(name);

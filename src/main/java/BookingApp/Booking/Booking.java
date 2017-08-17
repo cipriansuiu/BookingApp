@@ -4,7 +4,9 @@ package BookingApp.Booking;
 import BookingApp.Services.ServiceDao;
 
 import javax.persistence.*;
-import java.sql.Date;
+//import java.sql.Date;
+
+import java.util.Date;
 
 @Entity
 @Table(name="booking")
@@ -91,6 +93,14 @@ public class Booking  {
 
     public void setAvailability(Date availability) {
         this.availability = availability;
+    }
+
+    public boolean betweenDates(Date startDate)
+    {
+
+        Date afterDate=new Date(startDate.getYear(),startDate.getMonth(),startDate.getDay()+6);
+
+        return this.availability.after(startDate)&&this.availability.before(afterDate);
     }
 
 
