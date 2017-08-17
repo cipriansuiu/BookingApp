@@ -1,5 +1,7 @@
 package BookingApp.User;
 
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.*;
@@ -95,7 +97,11 @@ public class User {
 		return password;
 	}
 	public void setPassword(String password) {
-		this.password = password;
+
+
+		BCryptPasswordEncoder enc=new BCryptPasswordEncoder();
+		this.password=enc.encode(password);
+		//this.password = password;
 	}
 
 	@Override
