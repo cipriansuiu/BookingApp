@@ -27,6 +27,7 @@ public class SimpleEmailController {
         }
     }
 
+
     public void sendEmail(String email) throws Exception{
         MimeMessage message = sender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(message);
@@ -37,4 +38,6 @@ public class SimpleEmailController {
         
         sender.send(message);
     }
+
+
 }
