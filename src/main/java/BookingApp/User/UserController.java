@@ -16,18 +16,22 @@ public class UserController {
 	private UserRepository userRepository;
 
 	@RequestMapping("/users")
+	@CrossOrigin
+
 	public List<User> getAllUsers()
 	{
 		return userService.getAllUsers();
 	}
 
 	@RequestMapping("/users/{email}")
+	@CrossOrigin
 	public User getUser(@PathVariable Long id)
 	{
 		return userService.getUser(id);
 	}
 	
 	@RequestMapping(method=RequestMethod.POST,value="/users")
+	@CrossOrigin
 	public void addUser(@RequestBody User user) throws Exception{
 		
 		
@@ -37,30 +41,33 @@ public class UserController {
 	}
 
 	@RequestMapping(method = RequestMethod.PUT, value = "/users")
+	@CrossOrigin
 	public void updateUser(@RequestBody User user) {
 		userService.updateUser(user);
 	}
 
 	@RequestMapping(method = RequestMethod.DELETE, value = "/users/{id}")
+	@CrossOrigin
 	public void deleteUser(@PathVariable Long id) {
 		userService.deleteUser(id);
 	}
 
-	@CrossOrigin
-	@RequestMapping(path="/login", method = RequestMethod.POST)
-	public ResponseEntity<String> login(@RequestBody User user){
 
-		User currentUser = new User();
-		currentUser = userRepository.findByEmail(user.getEmail());
-
-		String pass = currentUser.getPassword();
-		String inputPass = user.getPassword();
-
-		if(!(currentUser.getEmail().equals(""))&& currentUser.getEmail().matches(inputPass)) {
-			currentUser = userRepository.findByEmail(user.getEmail());
-			return new ResponseEntity<>("Session created " + currentUser.getEmail() , HttpStatus.OK);
-		} else {
-			return new ResponseEntity<>("Something went wrong", HttpStatus.BAD_REQUEST);
-		}
-	}
+//	@RequestMapping(path="/login", method = RequestMethod.POST)
+//	@CrossOrigin
+//	public ResponseEntity<String> login(@RequestBody User user){
+//
+//		User currentUser = new User();
+//		currentUser = userRepository.findByEmail(user.getEmail());
+//
+//		String pass = currentUser.getPassword();
+//		String inputPass = user.getPassword();
+//
+//		if(!(currentUser.getEmail().equals(""))&& currentUser.getPassword().matches(inputPass)) {
+//			currentUser = userRepository.findByEmail(user.getEmail());
+//			return new ResponseEntity<>("Session created " + currentUser.getEmail() , HttpStatus.OK);
+//		} else {
+//			return new ResponseEntity<>("Something went wrong", HttpStatus.BAD_REQUEST);
+//		}
+//	}
 }
