@@ -35,6 +35,7 @@ public class UserService {
 	{
 		return userRepository.findOne(id);
 	}
+
 	public ResponseEntity<String> addUser(User user)
 	{
 		if (isDuplicateName(user.getName())) {

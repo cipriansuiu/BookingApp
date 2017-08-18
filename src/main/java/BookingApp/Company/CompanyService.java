@@ -1,10 +1,15 @@
 package BookingApp.Company;
 
+import BookingApp.Booking.Booking;
+import BookingApp.Booking.BookingRepository;
 import BookingApp.User.User;
 import BookingApp.User.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class CompanyService {
@@ -13,6 +18,13 @@ public class CompanyService {
 
     @Autowired
     private UserRepository userRepository;
+
+    public List<Company> getAllCompanies()
+    {
+        List<Company> companies=new ArrayList<>();
+        companyRepository.findAll().forEach(companies::add);
+        return companies;
+    }
 
     public ResponseEntity<String> addCompany(Company company) {
         User user1=company.getUser();

@@ -53,20 +53,20 @@ public class UserController {
 	}
 
 	@CrossOrigin
-	@RequestMapping(path="/login")
-	public ResponseEntity<String> login(@RequestParam("email") String email, @RequestParam("password") String password){
+	@RequestMapping(value="/login", method = RequestMethod.POST)
 
+	public ResponseEntity<String> login (@RequestBody User user){
+		//User user=new User();
 		User currentUser = new User();
-		currentUser = userRepository.findByEmail(email);
+		currentUser = userService.findUserByEmail(user.getEmail());
 
-		String inputPass = password;
+		String inputPass ;
 
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-		inputPass = encoder.encode(password);
-
-		if(!(currentUser.getEmail().equals(""))&& currentUser.getPassword().equals(inputPass)) {
-			currentUser = userRepository.findByEmail(email);
-			return new ResponseEntity<>("Session created " + currentUser.getEmail() , HttpStatus.OK);
+		inputPass = user.getPassword();
+		String true_pass = currentUser.getPassword();
+		if(!(currentUser.getEmail().equals(""))&& encoder.matches(inputPass,true_pass)) {
+			return new ResponseEntity<>("Session created " + currentUser.getId() , HttpStatus.OK);
 		} else {
 			return new ResponseEntity<>("Something went wrong", HttpStatus.BAD_REQUEST);
 		}
